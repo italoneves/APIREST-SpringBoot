@@ -1,15 +1,20 @@
 package br.com.italo.biblioteca.dominio;
 import javassist.SerialVersionUID;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 
     private static final long SerialVersionUID = 1L; //Númeração da minha classe..
@@ -19,7 +24,7 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
-    @OneToMany //Uma categoria tem muitos litros
+    @OneToMany(mappedBy = "categoria")//Uma categoria tem muitos livros.
     private List<Livro> livros = new ArrayList<>();
 
     public Categoria() {
