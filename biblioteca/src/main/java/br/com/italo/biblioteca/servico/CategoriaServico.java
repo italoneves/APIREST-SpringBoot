@@ -35,7 +35,6 @@ public class CategoriaServico {
         return categoria;
     }
 
-
     public Categoria atualizarCategoria(Integer id, Categoria categoria){
 
         Optional<Categoria> c = Optional.ofNullable
@@ -45,8 +44,7 @@ public class CategoriaServico {
         c1.setNome(c1.getNome());
         c1.setDescricao(categoria.getDescricao());
 
-
-        return null;
+        return c1;
 
     }
 }
