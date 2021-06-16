@@ -34,6 +34,13 @@ public class CategoriaRecurso {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(categoria1);
     }
+    public ResponseEntity<Categoria> atualizarCategoria(@PathVariable Integer id, @RequestBody Categoria categoria){
+
+        Categoria categoria1 = categoriaServico.atualizarCategoria(id, categoria);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoria1);
+
+    }
 
 
 }
