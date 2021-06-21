@@ -37,12 +37,13 @@ public class CategoriaServico {
 
     public Categoria atualizarCategoria(Integer id, Categoria categoria){
 
-        Optional<Categoria> c = Optional.ofNullable
-                (categoriaRepositorio.findById(id)).orElseThrow(() -> new ObjetoNaoEncontrado());
+        Optional<Categoria> c = Optional.ofNullable(categoriaRepositorio.findById(id)
+                .orElseThrow(() -> new ObjetoNaoEncontrado("Categoria não encontrada")));
        //Pego o objeto caso não tenha exception e atualizo
         Categoria c1 = c.get();
-        c1.setNome(c1.getNome());
+        c1.setNome(categoria.getNome());
         c1.setDescricao(categoria.getDescricao());
+        categoriaRepositorio.save(c1);
 
         return c1;
 
