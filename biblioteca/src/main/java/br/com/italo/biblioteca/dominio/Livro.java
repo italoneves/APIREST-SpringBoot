@@ -1,5 +1,7 @@
 package br.com.italo.biblioteca.dominio;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +25,8 @@ public class Livro  implements Serializable {
     private String titulo;
     private String autor;
     private String texto;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
     @ManyToOne // Temos muitos livros para uma categoria
     @JoinColumn(name = "categoria_id") // nome da chave estrangeira
