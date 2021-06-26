@@ -1,6 +1,8 @@
 package br.com.italo.biblioteca.dominio;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +27,10 @@ public class Livro  implements Serializable {
     private String titulo;
     private String autor;
     private String texto;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
+    //@JsonIgnore //Proteger contra o loop
+    @JsonBackReference //Proteger contra o loop
     @ManyToOne // Temos muitos livros para uma categoria
     @JoinColumn(name = "categoria_id") // nome da chave estrangeira
     private Categoria categoria;
@@ -85,6 +88,13 @@ public class Livro  implements Serializable {
         this.data = data;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     @Override
     public boolean equals(Object o) {
