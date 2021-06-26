@@ -1,4 +1,5 @@
 package br.com.italo.biblioteca.dominio;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javassist.SerialVersionUID;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Categoria implements Serializable {
     private Integer id;
     private String nome;
     private String descricao;
-
+    @JsonManagedReference //Serializar Normal
     @OneToMany(mappedBy = "categoria")//Uma categoria tem muitos livros.
     private List<Livro> livros = new ArrayList<>();
 
