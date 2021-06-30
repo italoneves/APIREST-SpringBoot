@@ -4,6 +4,7 @@ import br.com.italo.biblioteca.servico.CategoriaServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -35,13 +37,12 @@ public class CategoriaRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> adicionarCategoria(@RequestBody Categoria categoria){
-
+    public ResponseEntity<Categoria> adicionarCategoria(@Valid @RequestBody Categoria categoria){
         Categoria categoria1 = categoriaServico.adicionarCategoria(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoria1);
     }
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Categoria> atualizarCategoria(@PathVariable Integer id, @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> atualizarCategoria(@PathVariable Integer id,@Valid @RequestBody Categoria categoria){
 
         Categoria categoria1 = categoriaServico.atualizarCategoria(id, categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoria1);
@@ -51,7 +52,7 @@ public class CategoriaRecurso {
     public ResponseEntity<Void> deletarCategoria(@PathVariable Integer id){
         categoriaServico.deletarCategoria(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        //NO_CONTENT -> SERVIDOR ATENDEU A SOLICITAÇÃO COM SUCESSO, MAS NÃO A CONTEÚDO PARA SER ENVIADO NO CORPO
+        //NO_CONTENT -> SERVIDOR ATENDEU A SOLICITAÇÃO COM SUCESSO, MAS NÃO HÁ CONTEÚDO PARA SER ENVIADO NO CORPO
     }
 
 
