@@ -18,8 +18,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@RestController //Criação de Endpoint
-@RequestMapping("/categoria")
+@RestController
+@RequestMapping("/categoria") //Criação de Endpoint
 public class CategoriaRecurso {
 
 /* Faltando implementar o DTO */
