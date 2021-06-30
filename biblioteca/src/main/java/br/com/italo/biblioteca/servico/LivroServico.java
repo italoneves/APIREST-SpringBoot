@@ -8,8 +8,6 @@ import br.com.italo.biblioteca.servico.exception.ObjetoExistente;
 import br.com.italo.biblioteca.servico.exception.ObjetoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -30,7 +28,7 @@ public class LivroServico{
     }
 
     public Livro adicionarLivro(Livro livro, Integer cat_id){
-        livro.setId(null); //Não atualizar id existente aqui
+        livro.setId(null); //Não atualizar id existente
         Optional<Livro> l = livroRepositorio.findByTitulo(livro.getTitulo());
         if(l.isPresent()){
             throw new ObjetoExistente("O livro já está cadastrado");

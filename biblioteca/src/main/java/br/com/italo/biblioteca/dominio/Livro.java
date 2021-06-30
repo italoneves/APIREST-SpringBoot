@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -24,10 +25,14 @@ public class Livro  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Gerado pela coluna de autoIncremento do BD
     private Integer id;                                 //Faz parte de uma única tabela
+    @NotBlank(message = "Campo TÍTULO não pode ficar em branco")
     private String titulo;
+    @NotBlank(message = "Campo AUTOR não pode ficar em branco")
     private String autor;
+    @NotBlank(message = "Campo TEXTO não pode ficar em branco")
     private String texto;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotBlank(message = "Campo DATA não pode ficar em branco")
+    @JsonFormat(pattern = "yyyy-MM-dd") // Formato de retorno da data
     private LocalDate data;
     //@JsonIgnore //Proteger contra o loop
     @JsonBackReference //Proteger contra o loop
