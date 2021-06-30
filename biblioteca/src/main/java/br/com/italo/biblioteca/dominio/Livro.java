@@ -31,7 +31,6 @@ public class Livro  implements Serializable {
     private String autor;
     @NotBlank(message = "Campo TEXTO não pode ficar em branco")
     private String texto;
-    @NotBlank(message = "Campo DATA não pode ficar em branco")
     @JsonFormat(pattern = "yyyy-MM-dd") // Formato de retorno da data
     private LocalDate data;
     //@JsonIgnore //Proteger contra o loop
